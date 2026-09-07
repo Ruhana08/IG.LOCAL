@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- ==================== TOOLBAR ==================== -->
-    <include
+   <include
         android:id="@+id/toolbar"
         layout="@layout/layout_toolbar"
         android:layout_width="match_parent"
@@ -31,7 +30,7 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
 
-        <ImageView
+            <ImageView
                 android:id="@+id/img_profile"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
@@ -53,35 +52,40 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/img_profile" />
 
-            <TextView
+           <TextView
                 android:id="@+id/txt_posts"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="100\npost"
+                android:textSize="13sp"
+                app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toEndOf="@id/img_profile"
+                app:layout_constraintEnd_toStartOf="@id/txt_followers"
                 app:layout_constraintTop_toBottomOf="@id/txt_username"
                 app:layout_constraintBottom_toBottomOf="@id/img_profile" />
 
             <TextView
                 android:id="@+id/txt_followers"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:gravity="center"
                 android:text="100\nfollower"
+                android:textSize="13sp"
                 app:layout_constraintStart_toEndOf="@id/txt_posts"
+                app:layout_constraintEnd_toStartOf="@id/txt_following"
                 app:layout_constraintTop_toTopOf="@id/txt_posts"
                 app:layout_constraintBottom_toBottomOf="@id/txt_posts" />
 
             <TextView
                 android:id="@+id/txt_following"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:gravity="center"
                 android:text="200\nfollowing"
+                android:textSize="13sp"
                 app:layout_constraintStart_toEndOf="@id/txt_followers"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/txt_posts"
                 app:layout_constraintBottom_toBottomOf="@id/txt_posts" />
 
