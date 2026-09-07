@@ -7,34 +7,40 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- Toolbar / Header -->
+    <!-- ==================== TOOLBAR ==================== -->
     <include
         android:id="@+id/toolbar"
-        layout="@layout/layout_toolbar" />
+        layout="@layout/layout_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- ScrollView agar konten bawah tidak terpotong -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp">
 
-            <!-- Foto Profil -->
-            <ImageView
+        <ImageView
                 android:id="@+id/img_profile"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:background="@android:color/darker_gray"
                 android:src="@android:drawable/sym_def_app_icon"
+                android:contentDescription="Foto Profil"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Username -->
             <TextView
                 android:id="@+id/txt_username"
                 android:layout_width="0dp"
@@ -43,58 +49,53 @@
                 android:text="SH.MB6"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/img_profile"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/img_profile"
-                app:layout_constraintTop_toTopOf="@+id/img_profile" />
+                app:layout_constraintTop_toTopOf="@id/img_profile" />
 
-            <!-- Stats: Post, Follower, Following -->
             <TextView
                 android:id="@+id/txt_posts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="100\npost"
-                app:layout_constraintBottom_toBottomOf="@+id/img_profile"
-                app:layout_constraintEnd_toStartOf="@+id/txt_followers"
-                app:layout_constraintHorizontal_chainStyle="spread"
-                app:layout_constraintStart_toEndOf="@+id/img_profile"
-                app:layout_constraintTop_toBottomOf="@+id/txt_username" />
+                app:layout_constraintStart_toEndOf="@id/img_profile"
+                app:layout_constraintTop_toBottomOf="@id/txt_username"
+                app:layout_constraintBottom_toBottomOf="@id/img_profile" />
 
             <TextView
                 android:id="@+id/txt_followers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
                 android:gravity="center"
                 android:text="100\nfollower"
-                app:layout_constraintBottom_toBottomOf="@+id/txt_posts"
-                app:layout_constraintEnd_toStartOf="@+id/txt_following"
-                app:layout_constraintStart_toEndOf="@+id/txt_posts"
-                app:layout_constraintTop_toTopOf="@+id/txt_posts" />
+                app:layout_constraintStart_toEndOf="@id/txt_posts"
+                app:layout_constraintTop_toTopOf="@id/txt_posts"
+                app:layout_constraintBottom_toBottomOf="@id/txt_posts" />
 
             <TextView
                 android:id="@+id/txt_following"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
                 android:gravity="center"
                 android:text="200\nfollowing"
-                app:layout_constraintBottom_toBottomOf="@+id/txt_posts"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/txt_followers"
-                app:layout_constraintTop_toTopOf="@+id/txt_posts" />
+                app:layout_constraintStart_toEndOf="@id/txt_followers"
+                app:layout_constraintTop_toTopOf="@id/txt_posts"
+                app:layout_constraintBottom_toBottomOf="@id/txt_posts" />
 
-            <!-- Bio -->
             <TextView
                 android:id="@+id/txt_bio"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Bio . . . . . . . .\n. . . . . . . ."
+                android:text="Bio . . . . . . . .&#10;. . . . . . . ."
                 android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/img_profile" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_profile" />
 
-            <!-- Guideline Vertikal Tengah (50%) -->
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_center"
                 android:layout_width="wrap_content"
@@ -102,7 +103,6 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.5" />
 
-            <!-- Tombol Edit Profile -->
             <Button
                 android:id="@+id/btn_edit_profile"
                 android:layout_width="0dp"
@@ -110,11 +110,10 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="4dp"
                 android:text="Edit Profile"
-                app:layout_constraintEnd_toStartOf="@+id/guideline_center"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_bio" />
+                app:layout_constraintEnd_toStartOf="@id/guideline_center"
+                app:layout_constraintTop_toBottomOf="@id/txt_bio" />
 
-            <!-- Tombol Share Profile -->
             <Button
                 android:id="@+id/btn_share_profile"
                 android:layout_width="0dp"
@@ -122,26 +121,24 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="16dp"
                 android:text="Share Profile"
+                app:layout_constraintStart_toEndOf="@id/guideline_center"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/guideline_center"
-                app:layout_constraintTop_toBottomOf="@+id/txt_bio" />
+                app:layout_constraintTop_toBottomOf="@id/txt_bio" />
 
-            <!-- Guidelines Vertikal untuk Grid 3 Kolom Foto -->
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_third_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.333" />
+                app:layout_constraintGuide_percent="0.3333" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_third_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.666" />
+                app:layout_constraintGuide_percent="0.6666" />
 
-            <!-- Baris Grid 1 -->
             <ImageView
                 android:id="@+id/grid_img_1"
                 android:layout_width="0dp"
@@ -149,10 +146,11 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="2dp"
                 android:background="@android:color/darker_gray"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toStartOf="@+id/guideline_third_1"
+                android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_edit_profile" />
+                app:layout_constraintEnd_toStartOf="@id/guideline_third_1"
+                app:layout_constraintTop_toBottomOf="@id/btn_edit_profile"
+                app:layout_constraintDimensionRatio="1:1" />
 
             <ImageView
                 android:id="@+id/grid_img_2"
@@ -161,10 +159,11 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="2dp"
                 android:background="@android:color/darker_gray"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toStartOf="@+id/guideline_third_2"
-                app:layout_constraintStart_toEndOf="@+id/guideline_third_1"
-                app:layout_constraintTop_toTopOf="@+id/grid_img_1" />
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@id/guideline_third_1"
+                app:layout_constraintEnd_toStartOf="@id/guideline_third_2"
+                app:layout_constraintTop_toTopOf="@id/grid_img_1"
+                app:layout_constraintDimensionRatio="1:1" />
 
             <ImageView
                 android:id="@+id/grid_img_3"
@@ -172,12 +171,12 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="2dp"
                 android:background="@android:color/darker_gray"
-                app:layout_constraintDimensionRatio="1:1"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@id/guideline_third_2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/guideline_third_2"
-                app:layout_constraintTop_toTopOf="@+id/grid_img_1" />
+                app:layout_constraintTop_toTopOf="@id/grid_img_1"
+                app:layout_constraintDimensionRatio="1:1" />
 
-            <!-- Baris Grid 2 -->
             <ImageView
                 android:id="@+id/grid_img_4"
                 android:layout_width="0dp"
@@ -185,10 +184,11 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="2dp"
                 android:background="@android:color/darker_gray"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toStartOf="@+id/guideline_third_1"
+                android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/grid_img_1" />
+                app:layout_constraintEnd_toStartOf="@id/guideline_third_1"
+                app:layout_constraintTop_toBottomOf="@id/grid_img_1"
+                app:layout_constraintDimensionRatio="1:1" />
 
             <ImageView
                 android:id="@+id/grid_img_5"
@@ -197,10 +197,11 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginEnd="2dp"
                 android:background="@android:color/darker_gray"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toStartOf="@+id/guideline_third_2"
-                app:layout_constraintStart_toEndOf="@+id/guideline_third_1"
-                app:layout_constraintTop_toTopOf="@+id/grid_img_4" />
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@id/guideline_third_1"
+                app:layout_constraintEnd_toStartOf="@id/guideline_third_2"
+                app:layout_constraintTop_toTopOf="@id/grid_img_4"
+                app:layout_constraintDimensionRatio="1:1" />
 
             <ImageView
                 android:id="@+id/grid_img_6"
@@ -208,12 +209,166 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="2dp"
                 android:background="@android:color/darker_gray"
-                app:layout_constraintDimensionRatio="1:1"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@id/guideline_third_2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/guideline_third_2"
-                app:layout_constraintTop_toTopOf="@+id/grid_img_4" />
+                app:layout_constraintTop_toTopOf="@id/grid_img_4"
+                app:layout_constraintDimensionRatio="1:1" />
+
+            <ImageView
+                android:id="@+id/grid_img_7"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="2dp"
+                android:background="@android:color/darker_gray"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline_third_1"
+                app:layout_constraintTop_toBottomOf="@id/grid_img_4"
+                app:layout_constraintDimensionRatio="1:1" />
+
+            <ImageView
+                android:id="@+id/grid_img_8"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:background="@android:color/darker_gray"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@id/guideline_third_1"
+                app:layout_constraintEnd_toStartOf="@id/guideline_third_2"
+                app:layout_constraintTop_toTopOf="@id/grid_img_7"
+                app:layout_constraintDimensionRatio="1:1" />
+
+            <ImageView
+                android:id="@+id/grid_img_9"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2dp"
+                android:background="@android:color/darker_gray"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@id/guideline_third_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/grid_img_7"
+                app:layout_constraintDimensionRatio="1:1" />
+
+            <ImageView
+                android:id="@+id/grid_img_10"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="2dp"
+                android:background="@android:color/darker_gray"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline_third_1"
+                app:layout_constraintTop_toBottomOf="@id/grid_img_7"
+                app:layout_constraintDimensionRatio="1:1" />
+
+            <ImageView
+                android:id="@+id/grid_img_11"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:background="@android:color/darker_gray"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@id/guideline_third_1"
+                app:layout_constraintEnd_toStartOf="@id/guideline_third_2"
+                app:layout_constraintTop_toTopOf="@id/grid_img_10"
+                app:layout_constraintDimensionRatio="1:1" />
+
+            <ImageView
+                android:id="@+id/grid_img_12"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2dp"
+                android:background="@android:color/darker_gray"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@id/guideline_third_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/grid_img_10"
+                app:layout_constraintDimensionRatio="1:1" />
+
+            <ImageView
+                android:id="@+id/grid_img_13"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="2dp"
+                android:background="@android:color/darker_gray"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline_third_1"
+                app:layout_constraintTop_toBottomOf="@id/grid_img_10"
+                app:layout_constraintDimensionRatio="1:1" />
+
+            <ImageView
+                android:id="@+id/grid_img_14"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:background="@android:color/darker_gray"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@id/guideline_third_1"
+                app:layout_constraintEnd_toStartOf="@id/guideline_third_2"
+                app:layout_constraintTop_toTopOf="@id/grid_img_13"
+                app:layout_constraintDimensionRatio="1:1" />
+
+            <ImageView
+                android:id="@+id/grid_img_15"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2dp"
+                android:background="@android:color/darker_gray"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@id/guideline_third_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/grid_img_13"
+                app:layout_constraintDimensionRatio="1:1" />
+
+            <ImageView
+                android:id="@+id/grid_img_16"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="2dp"
+                android:background="@android:color/darker_gray"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline_third_1"
+                app:layout_constraintTop_toBottomOf="@id/grid_img_13"
+                app:layout_constraintDimensionRatio="1:1" />
+
+            <ImageView
+                android:id="@+id/grid_img_17"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:background="@android:color/darker_gray"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@id/guideline_third_1"
+                app:layout_constraintEnd_toStartOf="@id/guideline_third_2"
+                app:layout_constraintTop_toTopOf="@id/grid_img_16"
+                app:layout_constraintDimensionRatio="1:1" />
+
+            <ImageView
+                android:id="@+id/grid_img_18"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2dp"
+                android:background="@android:color/darker_gray"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toEndOf="@id/guideline_third_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/grid_img_16"
+                app:layout_constraintDimensionRatio="1:1" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
