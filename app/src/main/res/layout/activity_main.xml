@@ -372,7 +372,5 @@
                 app:layout_constraintDimensionRatio="1:1" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
